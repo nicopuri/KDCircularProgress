@@ -255,7 +255,12 @@ public class KDCircularProgress: UIView, CAAnimationDelegate {
         progressLayer.setNeedsDisplay()
     }
     
-    public func animate(fromAngle: Double, toAngle: Double, duration: TimeInterval, relativeDuration: Bool = true, completion: ((Bool) -> Void)?) {
+    public func animate(fromAngle: Double,
+                        toAngle: Double,
+                        duration: TimeInterval,
+                        relativeDuration: Bool = true,
+                        repeatCount: Float = 0,
+                        completion: ((Bool) -> Void)?) {
         if isAnimating() {
             pauseAnimation()
         }
@@ -275,6 +280,8 @@ public class KDCircularProgress: UIView, CAAnimationDelegate {
         animation.duration = animationDuration
         animation.delegate = self
         animation.isRemovedOnCompletion = false
+        animation.repeatCount = repeatCount
+        
         angle = toAngle
         animationCompletionBlock = completion
         
